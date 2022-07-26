@@ -6,7 +6,10 @@ router.get('/', (req, res) => {
         attributes: { exclude: ['password'] }
     })
         .then(dbUserData => res.json(dbUserData))
-        .catch(err => res.status(500).json(err));
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 router.get('/:id', (req, res) => {
@@ -18,7 +21,7 @@ router.get('/:id', (req, res) => {
         include: [
             {
                 model: Post,
-                attributes: ['id', 'title', 'post_url', 'created_at']
+                attributes: ['id', 'title', 'post_content', 'created_at']
             },
             {
                 model: Comment,
@@ -37,7 +40,10 @@ router.get('/:id', (req, res) => {
             }
             res.json(dbUserData)
         })
-        .catch(err => res.status(500).json(err))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 router.post('/', (req, res) => {
@@ -55,7 +61,10 @@ router.post('/', (req, res) => {
                 res.json(dbUserData);
             });
         })
-        .catch(err => res.status(500).json(err));
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 router.post('/login', (req, res) => {
@@ -129,7 +138,10 @@ router.delete('/:id', (req, res) => {
             }
             res.json(dbUserData)
         })
-        .catch(err => res.status(500).json(err));
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 });
 
 module.exports = router;
